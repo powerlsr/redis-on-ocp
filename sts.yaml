@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: Redis-cluster
+spec:
+  serviceName: Redis-cluster
+  replicas: 6
+  selector:
+    matchLabels:
+      app: Redis-cluster
+  template:
+    metadata:
+      labels:
+        cluster: Redis
+        app: Redis-cluster
+    spec:
+      terminationGracePeriodSeconds: 20
+      hostNetwork: true
+      containers:
+        - name: Redis
+          image: Redis:6.0.5
+          command:
+            - "/conf/update_node.sh"
+          args:
+            - "Redis-server"
+            - "/conf/Redis.conf"
+          ports:
+            - containerPort: 6379
+              protocol: "TCP"
+              name: client
+            - containerPort: 16379
+              protocol: "TCP"
+              name: gossip
+          env:
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+          volumeMounts:
+            - name: conf
+              mountPath: /conf
+              readOnly: false
+            - name: data
+              mountPath: /data
+              readOnly: false
+      volumes:
+        - name: conf
+          configMap:
+            name: cluster-Redis-conf
+            defaultMode: 0755
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1536M

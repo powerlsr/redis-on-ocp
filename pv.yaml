@@ -1,0 +1,96 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: cluster-Redis-pv-0
+  labels:
+    pvname: cluster-Redis-pv-0
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: 10.152.20.31
+    path: /home/share/Redis-cluster-test/n0
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: cluster-Redis-pv-1
+  labels:
+    pvname: cluster-Redis-pv-1
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: 10.152.20.31
+    path: /home/share/Redis-cluster-test/n1
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: cluster-Redis-pv-2
+  labels:
+    pvname: cluster-Redis-pv-2
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: 10.152.20.31
+    path: /home/share/Redis-cluster-test/n2
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: cluster-Redis-pv-3
+  labels:
+    pvname: cluster-Redis-pv-3
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: 10.152.20.31
+    path: /home/share/Redis-cluster-test/n3
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: cluster-Redis-pv-4
+  labels:
+    pvname: cluster-Redis-pv-4
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: 10.152.20.31
+    path: /home/share/Redis-cluster-test/n4
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: cluster-Redis-pv-5
+  labels:
+    pvname: cluster-Redis-pv-5
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: 10.152.20.31
+    path: /home/share/Redis-cluster-test/n5
